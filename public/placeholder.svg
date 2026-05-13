@@ -1,0 +1,6 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#111111"/>
+  <circle cx="400" cy="300" r="100" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="10 10"/>
+  <path d="M350 300L450 300M400 250L400 350" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="400" y="450" text-anchor="middle" fill="#0ea5e9" font-family="sans-serif" font-size="24">Asset Placeholder</text>
+</svg>
