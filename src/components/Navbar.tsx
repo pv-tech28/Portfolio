@@ -45,11 +45,6 @@ export default function Navbar() {
           <span className="text-primary-neon">.</span>
         </motion.button>
 
-        {/* Copyright - Centered in Desktop */}
-        <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-widest hidden sm:block">
-          © {new Date().getFullYear()} Pratha Varshney. All rights reserved.
-        </p>
-
         {/* Navigation Links & Toggle */}
         <div className="flex items-center gap-4 md:gap-6">
           <a href="#skills" className="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400 hover:text-primary-neon transition-colors">Skills</a>

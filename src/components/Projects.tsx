@@ -6,12 +6,12 @@ import React from "react";
 
 const projects = [
   {
-    title: "Quantum Flux",
-    description: "A decentralized exchange with real-time visualization of liquidity flows.",
+    title: "AI Interview Coach",
+    description: "An AI-powered interview preparation platform that provides mock interviews, real-time feedback, and performance analysis to help users improve their interview skills.",
     image: "/projects/project1.jpg",
     tags: ["React", "Solidity", "Three.js"],
-    github: "#",
-    live: "#"
+    github: "https://github.com/pv-tech28/AI-Interview-Coach.git",
+    
   },
   {
     title: "Neural Mesh",
