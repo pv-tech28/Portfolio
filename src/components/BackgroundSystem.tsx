@@ -30,10 +30,26 @@ export default function BackgroundSystem() {
 
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-      {/* Base background that transitions with theme */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-sky-50 dark:from-[#050505] dark:via-[#0a0a0a] dark:to-[#050510] transition-all duration-1000" />
+      {/* Grainy Filter Definition */}
+      <svg className="hidden">
+        <filter id="grainy">
+          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+      </svg>
 
-      {/* Animated Mesh Gradients / Blobs - Light Mode Elegant */}
+      {/* Base background */}
+      <div className="absolute inset-0 bg-slate-50 dark:bg-[#050505] transition-all duration-1000" />
+
+      {/* Animated Grid - Light Mode */}
+      <div className="absolute inset-0 dark:hidden opacity-[0.03]" 
+           style={{ backgroundImage: "radial-gradient(#4f46e5 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+      
+      {/* Animated Grid - Dark Mode */}
+      <div className="absolute inset-0 hidden dark:block opacity-[0.05]" 
+           style={{ backgroundImage: "linear-gradient(#ffffff 0.5px, transparent 0.5px), linear-gradient(90deg, #ffffff 0.5px, transparent 0.5px)", backgroundSize: "50px 50px" }} />
+
+      {/* Animated Mesh Gradients / Blobs */}
       <motion.div
         style={{
           x: springX,
@@ -41,51 +57,51 @@ export default function BackgroundSystem() {
         }}
         className="absolute inset-[-10%]"
       >
-        {/* Light Mode Primary Blob - Soft Sky Blue */}
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-[5%] left-[5%] w-[70vw] h-[70vw] bg-gradient-to-br from-sky-200/60 via-sky-100/40 to-cyan-100/30 rounded-full blur-[100px] hidden dark:hidden"
-        />
-
-        {/* Light Mode Secondary Blob - Soft Purple */}
-        <motion.div
-          animate={{
-            scale: [1.1, 1, 1.1],
-            x: [0, -25, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-[10%] right-[5%] w-[60vw] h-[60vw] bg-gradient-to-tl from-violet-200/50 via-purple-100/30 to-fuchsia-100/20 rounded-full blur-[120px] hidden dark:hidden"
-        />
-
-        {/* Light Mode Tertiary Blob - Warm Accent */}
+        {/* Light Mode Primary Blob - Purple/Pink */}
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
           }}
           transition={{
             duration: 15,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-[40%] right-[20%] w-[40vw] h-[40vw] bg-gradient-to-r from-amber-100/40 to-orange-100/30 rounded-full blur-[80px] hidden dark:hidden"
+          className="absolute top-[0%] left-[0%] w-[80vw] h-[80vw] bg-gradient-to-br from-purple-200/40 via-pink-100/30 to-transparent rounded-full blur-[100px] dark:hidden block"
         />
 
-        {/* Dark Mode Primary Blob */}
+        {/* Light Mode Secondary Blob - Rose/Amber */}
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-[0%] right-[0%] w-[70vw] h-[70vw] bg-gradient-to-tl from-rose-100/30 via-fuchsia-50/20 to-transparent rounded-full blur-[120px] dark:hidden block"
+        />
+
+        {/* Light Mode Center Accent - Cyan/Sky */}
+        <motion.div
+          animate={{
+            opacity: [0.2, 0.4, 0.2],
+            scale: [0.8, 1.1, 0.8],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/4 left-1/3 w-[50vw] h-[50vw] bg-sky-200/20 rounded-full blur-[80px] dark:hidden block"
+        />
+
+        {/* Dark Mode Blobs (Existing logic but refined colors if needed) */}
         <motion.div
           animate={{
             scale: [1, 1.1, 1],
@@ -96,10 +112,9 @@ export default function BackgroundSystem() {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute top-[10%] left-[10%] w-[60vw] h-[60vw] bg-primary/20 rounded-full blur-[120px] dark:block hidden"
+          className="absolute top-[10%] left-[10%] w-[60vw] h-[60vw] bg-primary/10 rounded-full blur-[120px] dark:block hidden"
         />
-
-        {/* Dark Mode Accent Blob */}
+        
         <motion.div
           animate={{
             scale: [1.1, 1, 1.1],
@@ -110,71 +125,35 @@ export default function BackgroundSystem() {
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] bg-purple-500/15 rounded-full blur-[140px] dark:block hidden"
-        />
-
-        {/* Dark Mode Center Glow */}
-        <motion.div
-          animate={{
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vw] bg-primary-neon/10 rounded-full blur-[160px] dark:block hidden"
+          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] bg-purple-500/10 rounded-full blur-[140px] dark:block hidden"
         />
       </motion.div>
 
-      {/* Floating Particles - Light Mode */}
-      <div className="absolute inset-0 hidden dark:block">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{
-              x: Math.random() * 100 + "%",
-              y: Math.random() * 100 + "%",
-              scale: Math.random() * 0.5 + 0.5,
-              opacity: Math.random() * 0.2 + 0.1,
-            }}
-            animate={{
-              y: ["-5%", "105%"],
-              opacity: [0, 0.4, 0],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 15,
-              repeat: Infinity,
-              delay: Math.random() * 10,
-              ease: "linear",
-            }}
-            className="absolute w-1 h-1 bg-primary-neon/30 rounded-full"
-          />
-        ))}
-      </div>
+      {/* Grainy Texture Overlay */}
+      <div className="absolute inset-0 grainy pointer-events-none" />
 
-      {/* Light Mode Sparkles - Elegant alternative to particles */}
+      {/* Floating Sparkles - Light Mode */}
       <div className="absolute inset-0 dark:hidden">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
             initial={{
               x: Math.random() * 100 + "%",
               y: Math.random() * 100 + "%",
               scale: 0,
-              opacity: 0,
             }}
             animate={{
               scale: [0, 1, 0],
-              opacity: [0, 0.6, 0],
+              opacity: [0, 0.8, 0],
+              y: ["0%", "-10%"],
             }}
             transition={{
-              duration: Math.random() * 4 + 3,
+              duration: Math.random() * 3 + 2,
               repeat: Infinity,
               delay: Math.random() * 5,
               ease: "easeInOut",
             }}
-            className="absolute w-2 h-2 bg-gradient-to-br from-sky-300 to-cyan-300 rounded-full blur-[1px]"
+            className="absolute w-1.5 h-1.5 bg-purple-400/40 rounded-full blur-[1px]"
           />
         ))}
       </div>

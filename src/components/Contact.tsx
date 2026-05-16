@@ -103,14 +103,14 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 px-4 bg-white dark:bg-dark-bg transition-colors duration-1000">
+    <section id="contact" className="py-24 px-4 bg-slate-50 dark:bg-dark-bg transition-colors duration-1000">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h3 className="text-purple-600 font-bold tracking-widest text-sm mb-2 uppercase">Contact</h3>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
             Let's connect.
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-slate-500 dark:text-gray-400 max-w-2xl mx-auto">
             Open to internships, collaborations, and exciting opportunities.
           </p>
         </div>
@@ -126,16 +126,16 @@ export default function Contact() {
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-center gap-6 group">
-                  <div className="w-12 h-12 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 group-hover:border-purple-500 group-hover:text-purple-500 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-transparent flex items-center justify-center text-slate-500 dark:text-gray-400 group-hover:border-purple-600 group-hover:text-purple-600 transition-all duration-300 shadow-sm">
                     {info.icon}
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{info.label}</p>
+                    <p className="text-sm text-slate-500 dark:text-gray-400">{info.label}</p>
                     <a
                       href={info.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-lg font-semibold text-gray-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      className="text-lg font-semibold text-slate-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                     >
                       {info.value}
                     </a>
@@ -152,7 +152,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-12 h-12 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:border-purple-500 hover:text-purple-500 transition-all duration-300"
+                  className="w-12 h-12 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-transparent flex items-center justify-center text-slate-500 dark:text-gray-400 hover:border-purple-600 group-hover:text-purple-600 transition-all duration-300 shadow-sm"
                 >
                   {social.icon}
                 </a>
@@ -169,7 +169,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+                  <label htmlFor="name" className="block text-sm font-bold text-slate-900 dark:text-white mb-2">
                     Name
                   </label>
                   <input
@@ -178,12 +178,12 @@ export default function Contact() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-slate-900 dark:text-white shadow-sm"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+                  <label htmlFor="email" className="block text-sm font-bold text-slate-900 dark:text-white mb-2">
                     Email
                   </label>
                   <input
@@ -192,55 +192,41 @@ export default function Contact() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-slate-900 dark:text-white shadow-sm"
                     placeholder="your@email.com"
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-bold text-gray-900 dark:text-white mb-2">
+                <label htmlFor="message" className="block text-sm font-bold text-slate-900 dark:text-white mb-2">
                   Message
                 </label>
                 <textarea
                   id="message"
                   required
-                  rows={5}
+                  rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-gray-900 dark:text-white resize-none"
-                  placeholder="Tell me about your project or opportunity..."
+                  className="w-full px-4 py-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-slate-900 dark:text-white shadow-sm resize-none"
+                  placeholder="Tell me about your project..."
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={status === "saving" || status === "saved"}
-                className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full font-bold flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:scale-100"
+                disabled={status === "saving"}
+                className="w-full group relative px-8 py-4 bg-purple-600 text-white rounded-xl font-bold overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 flex items-center justify-center gap-3 shadow-[0_10px_20px_-10px_rgba(147,51,234,0.5)]"
               >
-                {status === "idle" && (
-                  <>
-                    <Send className="w-4 h-4" />
-                    Send Message
-                  </>
+                {status === "saving" ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : status === "saved" ? (
+                  <CheckCircle className="w-5 h-5" />
+                ) : status === "error" ? (
+                  <AlertCircle className="w-5 h-5" />
+                ) : (
+                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 )}
-                {status === "saving" && (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
-                  </>
-                )}
-                {status === "saved" && (
-                  <>
-                    <CheckCircle className="w-4 h-4" />
-                    Sent!
-                  </>
-                )}
-                {status === "error" && (
-                  <>
-                    <AlertCircle className="w-4 h-4" />
-                    Error! Try again
-                  </>
-                )}
+                {status === "saving" ? "Sending..." : status === "saved" ? "Message Sent!" : status === "error" ? "Error! Try again" : "Send Message"}
               </button>
             </form>
           </motion.div>

@@ -159,10 +159,10 @@ export default function Certificates() {
   return (
     <section className="py-24 relative z-10 flex flex-col items-center justify-center transition-colors duration-1000">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-          Knowledge <span className="text-primary-neon">Core</span>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+          Knowledge <span className="text-purple-600 dark:text-primary-neon">Core</span>
         </h2>
-        <div className="h-1 w-20 bg-primary mx-auto rounded-full" />
+        <div className="h-1.5 w-20 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-primary dark:to-primary-neon mx-auto rounded-full" />
       </div>
 
       {/* The Core Orb */}
@@ -180,16 +180,16 @@ export default function Certificates() {
               initial={{ scale: 1, opacity: 0.5 }}
               animate={{ scale: i + 0.5, opacity: 0 }}
               transition={{ duration: 3, repeat: Infinity, delay: (i - 1) }}
-              className="absolute inset-0 rounded-full border border-primary-neon/30"
+              className="absolute inset-0 rounded-full border border-purple-600/30 dark:border-primary-neon/30"
             />
           ))}
           
-          <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary via-primary-neon to-blue-600 flex items-center justify-center relative z-10 shadow-[0_0_50px_rgba(0,242,255,0.4)]">
+          <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-rose-500 dark:from-primary dark:via-primary-neon dark:to-blue-600 flex items-center justify-center relative z-10 shadow-[0_10px_40px_rgba(168,85,247,0.3)] dark:shadow-[0_0_50px_rgba(0,242,255,0.4)]">
             <Award className="w-12 h-12 text-white" />
             
             {/* Animated label lines */}
             <div className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap">
-              <span className="text-xs font-bold uppercase tracking-widest text-primary-neon animate-pulse">
+              <span className="text-xs font-bold uppercase tracking-widest text-purple-600 dark:text-primary-neon animate-pulse">
                 Unlock Achievements
               </span>
             </div>
@@ -204,13 +204,14 @@ export default function Certificates() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-xl overflow-hidden"
+            className="fixed inset-0 z-[150] flex items-center justify-center bg-black/95 backdrop-blur-2xl overflow-hidden"
           >
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-8 right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors z-[110]"
+              className="absolute top-6 right-6 p-4 rounded-full bg-white/20 hover:bg-white/30 border border-white/30 backdrop-blur-md transition-all duration-300 z-[160] group shadow-xl"
+              aria-label="Close achievements"
             >
-              <X className="w-6 h-6" />
+              <X className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
             </button>
             {/* Galaxy Background Particles */}
             <div className="absolute inset-0 pointer-events-none">
@@ -301,7 +302,7 @@ export default function Certificates() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md overflow-y-auto"
             onClick={() => setSelectedCert(null)}
           >
             <motion.div
@@ -309,36 +310,45 @@ export default function Certificates() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="max-w-3xl w-full glass rounded-3xl overflow-hidden shadow-2xl"
+              className="max-w-4xl w-full glass rounded-3xl overflow-hidden shadow-2xl relative my-auto max-h-[90vh] flex flex-col"
             >
-              <div className="relative aspect-[16/10] bg-white/5 flex items-center justify-center">
-                 <Award className="w-24 h-24 text-primary-neon/20" />
+              <div className="relative flex-1 bg-gray-900 flex items-center justify-center group/img overflow-hidden min-h-[300px]">
+                 <img
+                   src={selectedCert.image}
+                   alt={selectedCert.title}
+                   className="max-w-full max-h-full object-contain"
+                   onError={(e) => {
+                     e.currentTarget.style.display = 'none';
+                   }}
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity pointer-events-none" />
+                 
                  <button
                   onClick={() => setSelectedCert(null)}
-                  className="absolute top-6 right-6 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                  className="absolute top-4 right-4 md:top-6 md:right-6 p-3 rounded-full bg-black/60 text-white hover:bg-black/80 border border-white/20 backdrop-blur-md transition-all z-[1100] group shadow-xl"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </button>
               </div>
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-6">
-                  <div>
-                    <h2 className="text-2xl font-bold mb-2">{selectedCert.title}</h2>
-                    <p className="text-gray-400">{selectedCert.issuer} • Issued {selectedCert.date}</p>
+              <div className="p-6 md:p-8 bg-white dark:bg-[#0a0a0a] shrink-0">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-6 mb-6">
+                  <div className="flex-1">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-2 text-slate-900 dark:text-white leading-tight">{selectedCert.title}</h2>
+                    <p className="text-slate-500 dark:text-gray-400 text-base md:text-lg">{selectedCert.issuer} • Issued {selectedCert.date}</p>
                   </div>
                   <a
                     href={selectedCert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:scale-105 transition-transform"
+                    className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-purple-600 text-white rounded-xl font-bold hover:scale-105 transition-all shadow-lg hover:shadow-purple-500/25 shrink-0"
                   >
                     View Credential
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-5 h-5" />
                   </a>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {selectedCert.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300">
+                    <span key={tag} className="px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs md:text-sm font-medium text-slate-600 dark:text-gray-300">
                       {tag}
                     </span>
                   ))}
