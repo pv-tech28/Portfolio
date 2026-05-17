@@ -7,7 +7,7 @@ import BackgroundSystem from "@/components/BackgroundSystem";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dev Portfolio | Cinematic Experience",
+  title: "PV-Portfolio",
   description: "Premium developer portfolio with orbital galaxy certificates",
 };
 
